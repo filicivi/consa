@@ -1,0 +1,53 @@
+# $Id: main.yml v.0.2 $ $Date: 2017/02/26 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
+# Ansible role: Install vnstat and apply a template configuration.
+---
+- name: 'Installing RPMFusion repos.'
+  dnf:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - 'http://download1.rpmfusion.org/free/fedora/releases/28/Everything/x86_64/os/Packages/r/rpmfusion-free-release-28-1.noarch.rpm'
+    - 'http://download1.rpmfusion.org/nonfree/fedora/releases/28/Everything/x86_64/os/Packages/r/rpmfusion-nonfree-release-28-1.noarch.rpm'
+
+- name: 'Installing Microsoft VSCode repository.'
+  yum_repository:
+    name: 'code'
+    description: 'Visual Studio Code'
+    baseurl: 'https://packages.microsoft.com/yumrepos/vscode'
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc'
+
+- name: 'Installing Opera repository.'
+  yum_repository:
+    name: 'opera'
+    description: 'Opera packages'
+    baseurl: 'https://rpm.opera.com/rpm'
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: 'https://rpm.opera.com/rpmrepo.key'
+# type=rpm-md
+
+- name: 'Installing Docker-CE-Test repository.'
+  yum_repository:
+    name: 'docker-ce-test'
+    description: 'Docker CE Test - $basearch'
+    baseurl: 'https://download.docker.com/linux/fedora/$releasever/$basearch/test'
+    gpgcheck: yes
+    enabled: yes
+    gpgkey: 'https://download.docker.com/linux/fedora/gpg'
+
+# # FONTS
+
+# Enable RPM Fusion repository:
+# su -c 'dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+# Enable COPR repository with packages from this repo:
+# dnf copr enable dawid/better_fonts
+# Install packages:
+# dnf install fontconfig-enhanced-defaults fontconfig-font-replacements
+# Log out and log in again or restart computer to see the effect
+
+# teamviewer https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
+
+# # SYSTEM UPDATE
+# dnf -y update

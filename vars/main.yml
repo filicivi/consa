@@ -1,0 +1,79 @@
+# $Id: vars/main.yml v.0.2 $ $Date: 2018/04/24 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
+# Ansible specific-vars file for centos_nginx_install.
+---
+desktop_browsers:
+  - firefox
+  - opera-stable
+
+desktop_im:
+  - scudcloud
+  - telegram
+
+desktop_misc:
+  - keepassxc
+  - code
+
+network_utils:
+  - iftop
+  - hping3
+  - nmap
+
+fonts:
+  - terminus-fonts
+
+io_utils:
+  - hdparm
+  - hddtemp
+  - iotop
+
+kde_specific:
+  - kdiff3
+  - krename
+  - krdc
+  - yakuake
+
+gnome_specific:
+  - guake
+  - remmina
+
+misc_utils:
+  - ascineema
+  - bash-completion
+  - figlet
+  - fortune-mod
+  - pwgen
+
+system_utils:
+  - finger
+  - htop
+  - lsof
+  - bash-completion
+  - vim
+  - unrar
+  - finger
+  - links
+  - whois
+  - git
+  - htop
+  - ncdu
+  - tmux
+  - zip
+  - unzip
+  - ShellCheck
+  - tmux
+  - scrot
+  - vnstat
+  - strace
+  - mysql-utilities
+  - httpie
+
+virtualization:
+  - docker # systemctl enable docker
+  - vagrant
+  - VirtualBox
+
+vpn_clients:
+  - openvpn
+  - openfortivpn
+  - plasma-nm-fortisslvpn
+  - NetworkManager-fortisslvpn
