@@ -1,5 +1,2 @@
-# $Id: tests/inventory.yml v.0.3 $ $Date: 2018/05/04 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
-# Inventory file for test with role lnx_nginx_install.
-
 [local]
 localhost   ansible_connection=local

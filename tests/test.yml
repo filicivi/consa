@@ -1,23 +1,15 @@
-# $Id: test-template v.0.2 $ $Date: 2018/05/04 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
-# ${ROLE_DIR}/lnx_nginx_install/tests/test.yml -- Ansible playbook for testing role.
+# $Id: tests/test.yml v.0.4 $ $Date: 2018/05/11 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
+# Ansible playbook file for executing fedora_provisioner role.
 ---
-- name: '[ROLE]: Install NGINX.'
-  hosts: all
+- name: 'Executing role fedora_provisioner.'
+  hosts: fedoralive
   become: yes
   become_method: sudo
   gather_facts: yes
   gather_subset:
-    - network
+    - min
   ignore_errors: no
 
-  vars:
-    none: 'none'
-
-  # vars_prompt:
-  #   - name: "remote_hostname"
-  #     prompt: "  |>>> Enter the hostname will be setup on the server?"
-  #     private: no
-  #     default: base01.xafe.cloud
-
   roles:
-    - role: 'centos_nginx_install'
+    - role: "fedora_provisioner"
+...
