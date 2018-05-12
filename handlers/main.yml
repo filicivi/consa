@@ -1,8 +1,0 @@
-# $Id: handlers/main.yml v.0.3 $ $Date: 2018/05/04 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
-# Ansible handler for lnx_nginx_install.
----
-# Handler for clean yum metadata cache.
-- name: yum_clean_metadata
-  command: yum clean metadata
-  args:
-    warn: no

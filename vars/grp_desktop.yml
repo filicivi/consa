@@ -1,0 +1,18 @@
+---
+group_desktop:
+  browsers:
+    description: "Desktop browsers"
+    pkgs:
+    - chromium
+    - firefox
+    - opera-stable
+  im:
+    description: "Instant messaging"
+    pkgs:
+    - telegram-desktop
+    - scudcloud
+  misc:
+    description: "Desktop miscellanous"
+    pkgs:
+    - keepassxc
+...

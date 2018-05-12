@@ -1,3 +1,32 @@
-# $Id: defaults/main.yml v.0.3 $ $Date: 2018/05/04 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
-# Ansible defaults for lnx_nginx_install.
+# $Id: defaults/main.yml v.0.4 $ $Date: 2018/05/11 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
+# Ansible defaults for fedora_provisioner.
 ---
+repository_rpmfusion:
+  free:
+    description: "RPMfusion FREE packages."
+    baseurl: "http://download1.rpmfusion.org/free/fedora/releases/{{ ansible_distribution_version }}/Everything/x86_64/os/Packages/r/rpmfusion-free-release-28-1.noarch.rpm"
+  nonfree:
+    description: "RPMfusion NON-FREE packages."
+    baseurl: "http://download1.rpmfusion.org/nonfree/fedora/releases/{{ ansible_distribution_version }}/Everything/x86_64/os/Packages/r/rpmfusion-nonfree-release-28-1.noarch.rpm"
+
+repository_extra:
+  vscode:
+    name: "code"
+    description: "Visual Studio Code"
+    baseurl: "https://packages.microsoft.com/yumrepos/vscode"
+    gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+  opera:
+    name: "opera"
+    description: "Opera packages"
+    baseurl: "https://rpm.opera.com/rpm"
+    gpgkey: "https://rpm.opera.com/rpmrepo.key"
+  docker:
+    name: "docker-ce-test"
+    description: "Docker CE Test"
+    baseurl: "https://download.docker.com/linux/fedora/$releasever/$basearch/test"
+    gpgkey: "https://download.docker.com/linux/fedora/gpg"
+
+rpm_teamviewer:
+  description: "Teamviewer official package."
+  baseurl: "https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm"
+...

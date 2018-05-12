@@ -1,0 +1,7 @@
+---
+group_gnomespecific:
+  description: "Gnome-specific packages"
+  pkgs:
+  - guake
+  - remmina
+...

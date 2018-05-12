@@ -1,0 +1,16 @@
+---
+ group_development:
+  description: "Development utils"
+  pkgs:
+  - code
+  - docker          # systemctl enable docker
+  - httpie
+  - git
+  - jq
+  - mysql-utilities
+  - ShellCheck
+  - strace
+  - vagrant
+#  - VirtualBox
+#  - virtualbox-guest-additions
+...

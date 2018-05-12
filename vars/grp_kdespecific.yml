@@ -1,0 +1,9 @@
+---
+group_kdespecific:
+  description: "KDE-specific packages"
+  pkgs:
+  - kdiff3
+  - krename
+  - krdc
+  - yakuake
+...

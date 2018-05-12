@@ -1,53 +1,54 @@
-# $Id: main.yml v.0.2 $ $Date: 2017/02/26 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
-# Ansible role: Install vnstat and apply a template configuration.
+# $Id: defaults/main.yml v.0.4 $ $Date: 2018/05/11 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
+# Ansible task file for role fedora_provisioner.
 ---
-- name: 'Installing RPMFusion repos.'
+- name: "Adding RPMFusion repositories."
   dnf:
-    name: '{{ item }}'
+    name: "{{ item.baseurl }}"
     state: present
   with_items:
-    - 'http://download1.rpmfusion.org/free/fedora/releases/28/Everything/x86_64/os/Packages/r/rpmfusion-free-release-28-1.noarch.rpm'
-    - 'http://download1.rpmfusion.org/nonfree/fedora/releases/28/Everything/x86_64/os/Packages/r/rpmfusion-nonfree-release-28-1.noarch.rpm'
+    - "{{ repository_rpmfusion.free }}"
+    - "{{ repository_rpmfusion.nonfree }}"
+  loop_control:
+    label: "{{ item.description }}"
 
-- name: 'Installing Microsoft VSCode repository.'
+- name: "Adding extra repositories."
   yum_repository:
-    name: 'code'
-    description: 'Visual Studio Code'
-    baseurl: 'https://packages.microsoft.com/yumrepos/vscode'
+    name: "{{ item.name }}"
+    description: "{{ item.description }}"
+    baseurl: "{{ item.baseurl }}"
     gpgcheck: yes
     enabled: yes
-    gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc'
+    gpgkey: "{{ item.gpgkey }}"
+  with_items:
+    - "{{ repository_extra.vscode }}"
+    - "{{ repository_extra.opera }}"
+    - "{{ repository_extra.docker }}"
+  loop_control:
+    label: "Repository: {{ item.description }}."
 
-- name: 'Installing Opera repository.'
-  yum_repository:
-    name: 'opera'
-    description: 'Opera packages'
-    baseurl: 'https://rpm.opera.com/rpm'
-    gpgcheck: yes
-    enabled: yes
-    gpgkey: 'https://rpm.opera.com/rpmrepo.key'
-# type=rpm-md
+- name: "Importing package groups vars."
+  include_vars:
+    dir: vars
+    extensions: [yml]
 
-- name: 'Installing Docker-CE-Test repository.'
-  yum_repository:
-    name: 'docker-ce-test'
-    description: 'Docker CE Test - $basearch'
-    baseurl: 'https://download.docker.com/linux/fedora/$releasever/$basearch/test'
-    gpgcheck: yes
-    enabled: yes
-    gpgkey: 'https://download.docker.com/linux/fedora/gpg'
-
-# # FONTS
-
-# Enable RPM Fusion repository:
-# su -c 'dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
-# Enable COPR repository with packages from this repo:
-# dnf copr enable dawid/better_fonts
-# Install packages:
-# dnf install fontconfig-enhanced-defaults fontconfig-font-replacements
-# Log out and log in again or restart computer to see the effect
-
-# teamviewer https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
-
-# # SYSTEM UPDATE
-# dnf -y update
+- name: "Installing per-group packages."
+  dnf:
+    name: "{{ item.pkgs }}"
+    state: present
+  with_items:
+    - "{{ group_sysutils.archivers }}"
+    - "{{ group_sysutils.editors }}"
+    - "{{ group_sysutils.iofs_utils }}"
+    - "{{ group_sysutils.net_utils }}"
+    - "{{ group_sysutils.misc_utils }}"
+    - "{{ group_sysutils.multiplexers }}"
+    - "{{ group_fonts }}"
+    - "{{ group_development }}"
+    - "{{ group_desktop.browsers }}"
+    - "{{ group_desktop.im }}"
+    - "{{ group_desktop.misc }}"
+    - "{{ group_kdespecific }}"
+    - "{{ group_gnomespecific }}"
+  loop_control:
+    label: "{{ item.description }}: {{ item.pkgs }}"
+...

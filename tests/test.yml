@@ -1,8 +1,8 @@
 # $Id: tests/test.yml v.0.4 $ $Date: 2018/05/11 $ $Author: Filippo "joeyrs" Civiletti <fc@xafe.it> $
 # Ansible playbook file for executing fedora_provisioner role.
 ---
-- name: 'Executing role fedora_provisioner.'
-  hosts: fedoralive
+- name: '[Executing Role]: fedora_provisioner.'
+  hosts: localhost
   become: yes
   become_method: sudo
   gather_facts: yes

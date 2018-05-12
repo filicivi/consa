@@ -1,0 +1,44 @@
+---
+group_sysutils:
+  archivers:
+    description: "Archivers"
+    pkgs:
+    - unrar
+    - unzip
+    - zip
+  editors:
+    description: "Editors"
+    pkgs:
+    - vim
+  iofs_utils:
+    description: "I/O & Filesystem utils"
+    pkgs:
+    - hdparm
+    - hddtemp
+    - iotop
+    - ncdu
+  net_utils:
+    description: "Network utils"
+    pkgs:
+    - iftop
+    - hping3
+    - finger
+    - links
+    - nmap
+    - vnstat
+    - whois
+  misc_utils:
+    description: "Miscellanous utils"
+    pkgs:
+    - asciinema
+    - figlet
+    - fortune-mod
+    - pwgen
+    - scrot
+  multiplexers:
+    description: "Terminal multiplexers"
+    pkgs:
+    - screen
+    - tmux
+    - htop
+...

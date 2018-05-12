@@ -1,0 +1,6 @@
+---
+group_fonts:
+  description: "Fonts"
+  pkgs:
+  - terminus-fonts
+...
