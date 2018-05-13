@@ -2,5 +2,8 @@
 group_fonts:
   description: "Fonts"
   pkgs:
+  - google-roboto-fonts.noarch
+  - google-roboto-mono-fonts.noarch
+  - linux-libertine-fonts.noarch
   - terminus-fonts
 ...

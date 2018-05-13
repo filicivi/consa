@@ -4,10 +4,10 @@
 repository_rpmfusion:
   free:
     description: "RPMfusion FREE packages."
-    baseurl: "http://download1.rpmfusion.org/free/fedora/releases/{{ ansible_distribution_version }}/Everything/x86_64/os/Packages/r/rpmfusion-free-release-28-1.noarch.rpm"
+    baseurl: "http://download1.rpmfusion.org/free/fedora/releases/{{ ansible_distribution_version }}/Everything/x86_64/os/Packages/r/rpmfusion-free-release-{{ ansible_distribution_version }}-1.noarch.rpm"
   nonfree:
     description: "RPMfusion NON-FREE packages."
-    baseurl: "http://download1.rpmfusion.org/nonfree/fedora/releases/{{ ansible_distribution_version }}/Everything/x86_64/os/Packages/r/rpmfusion-nonfree-release-28-1.noarch.rpm"
+    baseurl: "http://download1.rpmfusion.org/nonfree/fedora/releases/{{ ansible_distribution_version }}/Everything/x86_64/os/Packages/r/rpmfusion-nonfree-release-{{ ansible_distribution_version }}-1.noarch.rpm"
 
 repository_extra:
   vscode:
