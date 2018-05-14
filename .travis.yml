@@ -15,10 +15,11 @@ services:
 
 before_install:
   - echo ${distribution}:${version}
-  - sudo docker pull ${distribution}:${version}
-  - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
+#  - sudo docker pull ${distribution}:${version}
+#  - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
 
 before_script:
+  - echo ${distribution}:${version}
   - sudo docker run -d --privileged -v /sys/fs/cgroup:ro --volume=${PWD}:/etc/ansible/roles:ro ${distribution}-${version}:ansible --name=ansible_ci"
 
 script:
