@@ -1,14 +1,14 @@
 ---
-#language: generic
+language: generic
 sudo: required
 
 env:
-  - distribution: "fedora"
-    version: "28"
+  - distribution: fedora
+    version: 28
 
-addons:
-  apt:
-    update: false
+# addons:
+#   apt:
+#     update: false
 
 services:
   - docker
@@ -18,7 +18,7 @@ before_install:
   - "sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis"
 
 before_script:
-  - "sudo docker run -d --privileged -v /sys/fs/cgroup:ro --volume="${PWD}:/etc/ansible/roles:ro ${distribution}-${version}:ansible --name=ansible_ci"
+  - "sudo docker run -d --privileged -v /sys/fs/cgroup:ro --volume=${PWD}:/etc/ansible/roles:ro ${distribution}-${version}:ansible --name=ansible_ci"
 
 script:
   - "sudo docker exec ansible_ci ansible-playbook -v /etc/ansible/roles/tests/test.yml --syntax-check"
@@ -26,7 +26,7 @@ script:
   - "sudo docker exec ansible_ci ansible-playbook -v /etc/ansible/roles/tests/test.yml | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)"
 
 after_script:
-  - "sudo docker rm -f ansible_ci"
+  - sudo docker rm -f ansible_ci
 
 notifications:
   email:
