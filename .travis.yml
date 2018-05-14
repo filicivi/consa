@@ -6,19 +6,21 @@ env:
   - distribution: fedora
     version: 28
 
-# addons:
-#   apt:
-#     update: false
+addons:
+  apt:
+    update: false
 
 services:
   - docker
 
 before_install:
-  - "sudo docker pull ${distribution}:${version}"
-  - "sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis"
+  - env
+  - "echo '${distribution}:${version}'"
+  - sudo docker pull ${distribution}:${version}
+  - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
 
 before_script:
-  - "sudo docker run -d --privileged -v /sys/fs/cgroup:ro --volume=${PWD}:/etc/ansible/roles:ro ${distribution}-${version}:ansible --name=ansible_ci"
+  - sudo docker run -d --privileged -v /sys/fs/cgroup:ro --volume=${PWD}:/etc/ansible/roles:ro ${distribution}-${version}:ansible --name=ansible_ci"
 
 script:
   - "sudo docker exec ansible_ci ansible-playbook -v /etc/ansible/roles/tests/test.yml --syntax-check"
