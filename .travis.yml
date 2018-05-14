@@ -14,7 +14,6 @@ services:
   - docker
 
 before_install:
-  - bash env
   - echo ${distribution}:${version}
   - sudo docker pull ${distribution}:${version}
   - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
