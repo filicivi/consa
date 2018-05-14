@@ -11,5 +11,5 @@
   ignore_errors: no
 
   roles:
-    - role: "fedora_provisioner"
+    - role: "consa"
 ...
