@@ -14,8 +14,9 @@ services:
   - docker
 
 before_install:
-#  - sudo docker pull ${distribution}:${version}
-#  - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
+  - sudo docker pull ${distribution}:${version}
+  - cat travis/Dockerfile.${distribution}-${version}
+  - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
 
 before_script:
   - "sudo docker run -d --privileged --volume=${PWD}:/etc/ansible/roles:ro ${distribution}-${version}:ansible --name=ansible_ci"
