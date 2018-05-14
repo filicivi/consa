@@ -3,8 +3,8 @@ language: generic
 sudo: required
 
 env:
-  - distribution: fedora
-    version: 28
+  - distribution: "fedora"
+    version: "28"
 
 addons:
   apt:
@@ -14,8 +14,8 @@ services:
   - docker
 
 before_install:
-  - env
-  - "echo '${distribution}:${version}'"
+  - bash env
+  - echo ${distribution}:${version}
   - sudo docker pull ${distribution}:${version}
   - sudo docker build --no-cache --rm --file=travis/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible travis
 
